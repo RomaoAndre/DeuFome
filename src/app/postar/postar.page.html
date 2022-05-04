@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet" />
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-img src="../assets/logo.png" id="logo"></ion-img>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="texto">
+    <span>Poste sua Receita</span>
+  </div>
+  <div class="form">
+    <ion-select interface="popover" placeholder="Categoria" clearInput [(ngModel)]="post.tipo" cancelText="Cancelar" okText="Ok">
+      <ion-select-option value="lanches">Lanches</ion-select-option>
+      <ion-select-option value="saladas">Saladas</ion-select-option>
+      <ion-select-option value="massas">Massas</ion-select-option>
+      <ion-select-option value="veganas">Vegana</ion-select-option>
+    </ion-select>
+    <ion-input placeholder="Titulo" clearInput [(ngModel)]="post.titulo"></ion-input>
+    <ion-textarea placeholder="Ingredientes" clearInput [(ngModel)]="post.ingredientes"></ion-textarea>
+    <ion-textarea placeholder="Modo de Preparo" clearInput [(ngModel)]="post.modopreparo"></ion-textarea>
+  </div>
+  <span class="aviso"><i class="icon ion-md-alert"></i>Use a virgula para separar os ingredientes e o modo de preparo!</span>
+  <div class="wrapper">
+      <div class="imgDiv" (click)="openGalery()" *ngIf="post.photo == '' ">
+        <ion-icon name="add"></ion-icon>
+      </div>
+      {{downloadUrl | async}}
+    <div *ngIf="post.photo != '' ">
+      <img class="img" src="{{ post.photo }}" />
+    </div>
+  </div>
+  <ion-button class="botaopostar" color="body" (click)="submitPost()" expand="full">Publicar</ion-button>
+</ion-content> 
